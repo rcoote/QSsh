@@ -29,6 +29,7 @@
 #include <qssh/sftpfilesystemmodel.h>
 #include <qssh/sshconnection.h>
 
+#include <QSqlDatabase>
 #include <QApplication>
 #include <QDir>
 #include <QFileDialog>
@@ -36,6 +37,7 @@
 #include <QModelIndexList>
 #include <QItemSelectionModel>
 #include <QString>
+
 using namespace Qt::StringLiterals;
 
 using namespace QSsh;
@@ -53,6 +55,8 @@ SftpFsWindow::SftpFsWindow(QWidget *parent) : QDialog(parent), m_ui(new Ui::Wind
     file.close();
 
     m_ui->treeViewHosts->setModel(hostModel);
+
+    QSqlError err = addConnection();
 }
 
 SftpFsWindow::~SftpFsWindow()
@@ -142,4 +146,29 @@ void SftpFsWindow::handleConnectionError(const QString &errorMessage)
     QMessageBox::warning(this, tr("Connection Error"),
         tr("Fatal SSH error: %1").arg(errorMessage));
     QCoreApplication::quit();
+}
+
+QSqlError SftpFsWindow::addConnection()
+{
+    QSqlError err;
+    QSqlDatabase db = QSqlDatabase::addDatabase("QSQLITE");
+    db.setDatabaseName("hostmanager.db");
+
+    if (!db.open()) {
+        err = db.lastError();
+        db = QSqlDatabase();
+        QSqlDatabase::removeDatabase(db.connectionName());
+    }
+
+    QSqlQuery query("SELECT * FROM hosts");
+    while (query.next()) {
+        QString hostname = query.value(0).toString();
+        QString lastDirectory = query.value(1).toString();
+        qDebug() << "hostname" <<hostname;
+        qDebug() << "lastDirectory" <<lastDirectory;
+
+    }
+
+
+    return err;
 }

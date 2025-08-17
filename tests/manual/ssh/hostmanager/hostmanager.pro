@@ -1,6 +1,6 @@
 include(../qssh.pri)
 
-QT += gui widgets
+QT += gui widgets sql
 
 TARGET=hostmanager
 SOURCES+=main.cpp window.cpp \

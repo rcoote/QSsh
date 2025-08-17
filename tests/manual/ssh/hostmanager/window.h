@@ -28,6 +28,13 @@
 
 #include <QDialog>
 #include <QWindow>
+#include <QSqlDriver>
+#include <QSqlError>
+#include <QSqlField>
+#include <QSqlQuery>
+#include <QSqlRecord>
+
+
 QT_BEGIN_NAMESPACE
 namespace Ui { class Window; }
 QT_END_NAMESPACE
@@ -51,6 +58,8 @@ private:
     void handleSftpOperationFinished(QSsh::SftpJobId jobId, const QString &error);
 
     void setHostNameToConnectTo(QString _hostName);
+
+    QSqlError addConnection();
 
     QSsh::SftpFileSystemModel *m_fsModel;
 
