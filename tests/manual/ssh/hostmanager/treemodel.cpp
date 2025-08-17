@@ -18,7 +18,7 @@ using namespace Qt::StringLiterals;
 //! [0]
 TreeModel::TreeModel(const QString &data, QObject *parent)
     : QAbstractItemModel(parent)
-    , rootItem(std::make_unique<TreeItem>(QVariantList{tr("Host"), tr("Description")}))
+    , rootItem(std::make_unique<TreeItem>(QVariantList{tr("Host"), tr("Description"), tr("Metadata")}))
 {
     setupModelData(QStringView{data}.split(u'\n'), rootItem.get());
 }
