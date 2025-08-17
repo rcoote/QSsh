@@ -45,13 +45,14 @@ SftpFsWindow::SftpFsWindow(QWidget *parent) : QDialog(parent), m_ui(new Ui::Wind
     m_ui->setupUi(this);
     connect(m_ui->connectButton, &QAbstractButton::clicked, this, &SftpFsWindow::connectToHost);
     connect(m_ui->downloadButton, &QAbstractButton::clicked, this, &SftpFsWindow::downloadFile);
+    connect(m_ui->treeViewHosts, &QTreeView::clicked, this, &SftpFsWindow::treeViewHostsClicked);
 
     QFile file(":/default.txt"_L1);
     file.open(QIODevice::ReadOnly | QIODevice::Text);
     hostModel = new TreeModel(QString::fromUtf8(file.readAll()));
     file.close();
 
-    m_ui->treeView->setModel(hostModel);
+    m_ui->treeViewHosts->setModel(hostModel);
 }
 
 SftpFsWindow::~SftpFsWindow()
@@ -99,6 +100,23 @@ void SftpFsWindow::downloadFile()
     m_ui->outputTextEdit->appendPlainText(message);
 }
 
+void SftpFsWindow::treeViewHostsClicked(const QModelIndex &index)
+{
+    qDebug() << "treeViewClicked" << "\n";
+    qDebug() << "index column" << index.column() <<  "\n";
+    qDebug() << "index row" << index.row() <<  "\n";
+    qDebug() << "index data" << index.data() <<  "\n";
+
+    QString hostname = index.data().toString();
+    qDebug() << "index hostname" << hostname <<  "\n";
+    setHostNameToConnectTo(hostname);
+
+    // Check if connectOnClick Checkbox is ticked, and if yes, invoke the connect as well here
+    if(m_ui->checkBoxConnectOnClick->isChecked())
+        connectToHost();
+}
+
+
 void SftpFsWindow::handleSftpOperationFailed(const QString &errorMessage)
 {
     m_ui->outputTextEdit->appendPlainText(errorMessage);
@@ -112,6 +130,11 @@ void SftpFsWindow::handleSftpOperationFinished(SftpJobId jobId, const QString &e
     else
         message = tr("Operation %1 failed: %2.").arg(jobId).arg(error);
     m_ui->outputTextEdit->appendPlainText(message);
+}
+
+void SftpFsWindow::setHostNameToConnectTo(QString _hostName)
+{
+    m_ui->hostLineEdit->setText(_hostName);
 }
 
 void SftpFsWindow::handleConnectionError(const QString &errorMessage)

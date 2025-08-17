@@ -44,11 +44,16 @@ public:
 private:
     void connectToHost();
     void downloadFile();
+    void treeViewHostsClicked(const QModelIndex &index);
+
     void handleConnectionError(const QString &errorMessage);
     void handleSftpOperationFailed(const QString &errorMessage);
     void handleSftpOperationFinished(QSsh::SftpJobId jobId, const QString &error);
 
+    void setHostNameToConnectTo(QString _hostName);
+
     QSsh::SftpFileSystemModel *m_fsModel;
+
     Ui::Window *m_ui;
 
     TreeModel *hostModel;
