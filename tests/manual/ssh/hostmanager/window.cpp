@@ -49,7 +49,7 @@ SftpFsWindow::SftpFsWindow(QWidget *parent) : QDialog(parent), m_ui(new Ui::Wind
     connect(m_ui->downloadButton, &QAbstractButton::clicked, this, &SftpFsWindow::downloadFile);
     connect(m_ui->treeViewHosts, &QTreeView::clicked, this, &SftpFsWindow::treeViewHostsClicked);
 
-    QFile file(":/default.txt"_L1);
+    QFile file("hosts.txt"_L1);
     file.open(QIODevice::ReadOnly | QIODevice::Text);
     hostModel = new TreeModel(QString::fromUtf8(file.readAll()));
     file.close();
