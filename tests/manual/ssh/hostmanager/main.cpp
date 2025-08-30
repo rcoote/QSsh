@@ -41,7 +41,7 @@ int main(int argc, char *argv[])
     w.show();
 
     QMainWindow w2;
-    w2.show();
+    //w2.show();
 
     return app.exec();
 }
