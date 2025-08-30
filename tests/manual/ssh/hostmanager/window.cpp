@@ -106,20 +106,15 @@ void SftpFsWindow::downloadFile()
 
 void SftpFsWindow::treeViewHostsClicked(const QModelIndex &index)
 {
-    qDebug() << "treeViewClicked" << "\n";
-    qDebug() << "index column" << index.column() <<  "\n";
-    qDebug() << "index row" << index.row() <<  "\n";
-    qDebug() << "index data" << index.data() <<  "\n";
+    qDebug() << "SftpFsWindow::treeViewHostsClicked Clicked on column: " << index.column() << ", row : " << index.row() <<  ", data :" << index.data().toString();
 
     QString hostname = index.data().toString();
-    qDebug() << "index hostname" << hostname <<  "\n";
     setHostNameToConnectTo(hostname);
 
     // Check if connectOnClick Checkbox is ticked, and if yes, invoke the connect as well here
     if(m_ui->checkBoxConnectOnClick->isChecked())
         connectToHost();
 }
-
 
 void SftpFsWindow::handleSftpOperationFailed(const QString &errorMessage)
 {
