@@ -58,7 +58,7 @@ private:
     void handleSftpOperationFinished(QSsh::SftpJobId jobId, const QString &error);
     void handleConnectionSuccess();
 
-    void setHostNameToConnectTo(QString _hostName);
+    void setHostNameToConnectTo(QString _hostName, QString _userName, QString _password, QString _lastPath);
 
     QSqlError connectToDatabase();
 

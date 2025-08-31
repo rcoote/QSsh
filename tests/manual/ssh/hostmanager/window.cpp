@@ -109,10 +109,27 @@ void SftpFsWindow::downloadFile()
 
 void SftpFsWindow::treeViewHostsClicked(const QModelIndex &index)
 {
-    qDebug() << "SftpFsWindow::treeViewHostsClicked Clicked on column: " << index.column() << ", row : " << index.row() <<  ", data :" << index.data().toString();
-
     QString hostname = index.data().toString();
-    setHostNameToConnectTo(hostname);
+    QString lastDirectory;
+    QString userName;
+    QString password;
+
+    qDebug() << "SftpFsWindow::treeViewHostsClicked Clicked on column: " << index.column() << ", row : " << index.row() <<  ", data :" << index.data().toString();
+    qDebug() << "Retrieving credentials from DB in any exist";
+
+    QSqlQuery query("SELECT * FROM hosts where hostname = '" + hostname + "'");
+    while (query.next()) {
+        hostname = query.value(0).toString();
+        userName = query.value(1).toString();
+        password = query.value(2).toString();
+        lastDirectory = query.value(3).toString();
+        qDebug() << "Found hostname: " <<hostname;
+        qDebug() << "Found userName: " <<userName;
+        qDebug() << "Found password: " <<password;
+        qDebug() << "Found lastDirectory: " <<lastDirectory;
+    }
+
+    setHostNameToConnectTo(hostname, userName, password, lastDirectory);
 
     // Check if connectOnClick Checkbox is ticked, and if yes, invoke the connect as well here
     if(m_ui->checkBoxConnectOnClick->isChecked())
@@ -134,19 +151,35 @@ void SftpFsWindow::handleSftpOperationFinished(SftpJobId jobId, const QString &e
     m_ui->outputTextEdit->appendPlainText(message);
 }
 
-void SftpFsWindow::setHostNameToConnectTo(QString _hostName)
+void SftpFsWindow::setHostNameToConnectTo(QString _hostName, QString _userName, QString _password, QString _lastPath)
 {
     m_ui->hostLineEdit->setText(_hostName);
+    m_ui->userLineEdit->setText(_userName);
+    m_ui->passwordLineEdit->setText(_password);
 }
 
 void SftpFsWindow::handleConnectionError(const QString &errorMessage)
 {
     QMessageBox::warning(this, tr("Connection Error"),
         tr("Fatal SSH error: %1").arg(errorMessage));
-    QCoreApplication::quit();
+    //QCoreApplication::quit();
 }
 
-QSqlError SftpFsWindow::addConnection()
+void SftpFsWindow::handleConnectionSuccess()
+{
+    qDebug() << "Connection success, updating credentials...";
+
+    QString hostName = m_ui->hostLineEdit->text();
+    QString userName = m_ui->userLineEdit->text();
+    QString password = m_ui->passwordLineEdit->text();
+
+    QSqlQuery query("update hosts set username = '" + userName + "' where hostname = '" + hostName + "'" );
+    //bool updateSuccess = query.exec();
+
+    //qDebug() << "Succ " << updateSuccess;
+}
+
+QSqlError SftpFsWindow::connectToDatabase()
 {
     QSqlError err;
     QSqlDatabase db = QSqlDatabase::addDatabase("QSQLITE");
@@ -157,16 +190,6 @@ QSqlError SftpFsWindow::addConnection()
         db = QSqlDatabase();
         QSqlDatabase::removeDatabase(db.connectionName());
     }
-
-    QSqlQuery query("SELECT * FROM hosts");
-    while (query.next()) {
-        QString hostname = query.value(0).toString();
-        QString lastDirectory = query.value(1).toString();
-        qDebug() << "hostname" <<hostname;
-        qDebug() << "lastDirectory" <<lastDirectory;
-
-    }
-
 
     return err;
 }
