@@ -55,8 +55,7 @@ SftpFsWindow::SftpFsWindow(QWidget *parent) : QDialog(parent), m_ui(new Ui::Wind
     file.close();
 
     m_ui->treeViewHosts->setModel(hostModel);
-
-    QSqlError err = addConnection();
+    QSqlError err = connectToDatabase();
 }
 
 SftpFsWindow::~SftpFsWindow()

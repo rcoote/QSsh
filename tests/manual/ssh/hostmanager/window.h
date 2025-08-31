@@ -59,7 +59,7 @@ private:
 
     void setHostNameToConnectTo(QString _hostName);
 
-    QSqlError addConnection();
+    QSqlError connectToDatabase();
 
     QSsh::SftpFileSystemModel *m_fsModel;
 
