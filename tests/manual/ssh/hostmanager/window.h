@@ -56,6 +56,7 @@ private:
     void handleConnectionError(const QString &errorMessage);
     void handleSftpOperationFailed(const QString &errorMessage);
     void handleSftpOperationFinished(QSsh::SftpJobId jobId, const QString &error);
+    void handleConnectionSuccess();
 
     void setHostNameToConnectTo(QString _hostName);
 

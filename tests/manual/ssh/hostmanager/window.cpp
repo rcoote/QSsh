@@ -81,6 +81,10 @@ void SftpFsWindow::connectToHost()
             this, &SftpFsWindow::handleConnectionError);
     connect(m_fsModel, &SftpFileSystemModel::sftpOperationFinished,
             this, &SftpFsWindow::handleSftpOperationFinished);
+
+    connect(m_fsModel, &SftpFileSystemModel::sftpConnectionSuccess,
+            this, &SftpFsWindow::handleConnectionSuccess);
+
     m_fsModel->setSshConnection(sshParams);
     m_ui->fsView->setModel(m_fsModel);
 }

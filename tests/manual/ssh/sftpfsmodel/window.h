@@ -46,6 +46,7 @@ private:
     void handleConnectionError(const QString &errorMessage);
     void handleSftpOperationFailed(const QString &errorMessage);
     void handleSftpOperationFinished(QSsh::SftpJobId jobId, const QString &error);
+    void handleSftpConnectionSuccess();
 
     QSsh::SftpFileSystemModel *m_fsModel;
     Ui::Window *m_ui;

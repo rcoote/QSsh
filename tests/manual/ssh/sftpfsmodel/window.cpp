@@ -69,6 +69,11 @@ void SftpFsWindow::connectToHost()
             this, &SftpFsWindow::handleConnectionError);
     connect(m_fsModel, &SftpFileSystemModel::sftpOperationFinished,
             this, &SftpFsWindow::handleSftpOperationFinished);
+
+    connect(m_fsModel, &SftpFileSystemModel::sftpConnectionSuccess,
+            this, &SftpFsWindow::handleSftpConnectionSuccess);
+
+
     m_fsModel->setSshConnection(sshParams);
     m_ui->fsView->setModel(m_fsModel);
 }
@@ -104,6 +109,11 @@ void SftpFsWindow::handleSftpOperationFinished(SftpJobId jobId, const QString &e
     else
         message = tr("Operation %1 failed: %2.").arg(jobId).arg(error);
     m_ui->outputTextEdit->appendPlainText(message);
+}
+
+void SftpFsWindow::handleSftpConnectionSuccess()
+{
+
 }
 
 void SftpFsWindow::handleConnectionError(const QString &errorMessage)

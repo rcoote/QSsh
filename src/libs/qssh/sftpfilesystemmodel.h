@@ -81,6 +81,8 @@ signals:
     // Success <=> error.isEmpty().
     void sftpOperationFinished(QSsh::SftpJobId, const QString &error);
 
+    void sftpConnectionSuccess();
+
 private:
     void handleSshConnectionEstablished();
     void handleSshConnectionFailure();

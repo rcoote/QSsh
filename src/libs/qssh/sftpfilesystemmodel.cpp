@@ -315,6 +315,8 @@ void SftpFileSystemModel::handleSshConnectionEstablished()
     connect(d->sftpChannel.data(), &SftpChannel::channelError,
             this, &SftpFileSystemModel::handleSftpChannelError);
     d->sftpChannel->initialize();
+
+    //emit sftpConnectionSuccess();
 }
 
 void SftpFileSystemModel::handleSftpChannelError(const QString &reason)
