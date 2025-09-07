@@ -6,7 +6,7 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>546</width>
+    <width>700</width>
     <height>676</height>
    </rect>
   </property>
@@ -14,6 +14,99 @@
    <string>Dialog</string>
   </property>
   <layout class="QGridLayout" name="gridLayout">
+   <item row="5" column="0">
+    <widget class="QCheckBox" name="checkBoxConnectOnClick">
+     <property name="text">
+      <string>Connect on click</string>
+     </property>
+    </widget>
+   </item>
+   <item row="1" column="1">
+    <widget class="QGroupBox" name="groupBox_2">
+     <property name="title">
+      <string>Remote File System</string>
+     </property>
+     <layout class="QVBoxLayout" name="verticalLayout_4">
+      <item>
+       <layout class="QHBoxLayout" name="horizontalLayout_3">
+        <item>
+         <widget class="QTreeView" name="fileSystemView">
+          <property name="sizePolicy">
+           <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
+            <horstretch>1</horstretch>
+            <verstretch>1</verstretch>
+           </sizepolicy>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <layout class="QVBoxLayout" name="verticalLayout_2">
+          <item>
+           <widget class="QPushButton" name="connectButton">
+            <property name="text">
+             <string>Connect</string>
+            </property>
+           </widget>
+          </item>
+          <item>
+           <widget class="QPushButton" name="downloadButton">
+            <property name="text">
+             <string>Download...</string>
+            </property>
+           </widget>
+          </item>
+          <item>
+           <spacer name="verticalSpacer">
+            <property name="orientation">
+             <enum>Qt::Orientation::Vertical</enum>
+            </property>
+            <property name="sizeHint" stdset="0">
+             <size>
+              <width>20</width>
+              <height>40</height>
+             </size>
+            </property>
+           </spacer>
+          </item>
+         </layout>
+        </item>
+       </layout>
+      </item>
+     </layout>
+    </widget>
+   </item>
+   <item row="5" column="1">
+    <layout class="QHBoxLayout" name="horizontalLayout_2">
+     <item>
+      <widget class="QDialogButtonBox" name="buttonBox">
+       <property name="orientation">
+        <enum>Qt::Orientation::Horizontal</enum>
+       </property>
+       <property name="standardButtons">
+        <set>QDialogButtonBox::StandardButton::Close</set>
+       </property>
+      </widget>
+     </item>
+    </layout>
+   </item>
+   <item row="3" column="0">
+    <widget class="QPlainTextEdit" name="hostNotesPlainTextEdit"/>
+   </item>
+   <item row="0" column="0" rowspan="3">
+    <widget class="QTreeView" name="treeViewHosts"/>
+   </item>
+   <item row="2" column="1">
+    <widget class="QGroupBox" name="groupBox_3">
+     <property name="title">
+      <string>Debug output</string>
+     </property>
+     <layout class="QVBoxLayout" name="verticalLayout">
+      <item>
+       <widget class="QPlainTextEdit" name="outputTextEdit"/>
+      </item>
+     </layout>
+    </widget>
+   </item>
    <item row="0" column="1">
     <widget class="QGroupBox" name="groupBox">
      <property name="title">
@@ -88,93 +181,10 @@
      </layout>
     </widget>
    </item>
-   <item row="3" column="1">
-    <layout class="QHBoxLayout" name="horizontalLayout_2">
-     <item>
-      <widget class="QDialogButtonBox" name="buttonBox">
-       <property name="orientation">
-        <enum>Qt::Orientation::Horizontal</enum>
-       </property>
-       <property name="standardButtons">
-        <set>QDialogButtonBox::StandardButton::Close</set>
-       </property>
-      </widget>
-     </item>
-    </layout>
-   </item>
-   <item row="1" column="1">
-    <widget class="QGroupBox" name="groupBox_2">
-     <property name="title">
-      <string>Remote File System</string>
-     </property>
-     <layout class="QVBoxLayout" name="verticalLayout_4">
-      <item>
-       <layout class="QHBoxLayout" name="horizontalLayout_3">
-        <item>
-         <widget class="QTreeView" name="fsView">
-          <property name="sizePolicy">
-           <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
-            <horstretch>1</horstretch>
-            <verstretch>1</verstretch>
-           </sizepolicy>
-          </property>
-         </widget>
-        </item>
-        <item>
-         <layout class="QVBoxLayout" name="verticalLayout_2">
-          <item>
-           <widget class="QPushButton" name="connectButton">
-            <property name="text">
-             <string>Connect</string>
-            </property>
-           </widget>
-          </item>
-          <item>
-           <widget class="QPushButton" name="downloadButton">
-            <property name="text">
-             <string>Download...</string>
-            </property>
-           </widget>
-          </item>
-          <item>
-           <spacer name="verticalSpacer">
-            <property name="orientation">
-             <enum>Qt::Orientation::Vertical</enum>
-            </property>
-            <property name="sizeHint" stdset="0">
-             <size>
-              <width>20</width>
-              <height>40</height>
-             </size>
-            </property>
-           </spacer>
-          </item>
-         </layout>
-        </item>
-       </layout>
-      </item>
-     </layout>
-    </widget>
-   </item>
-   <item row="2" column="1">
-    <widget class="QGroupBox" name="groupBox_3">
-     <property name="title">
-      <string>Debug output</string>
-     </property>
-     <layout class="QVBoxLayout" name="verticalLayout">
-      <item>
-       <widget class="QPlainTextEdit" name="outputTextEdit"/>
-      </item>
-     </layout>
-    </widget>
-   </item>
-   <item row="0" column="0" rowspan="3">
-    <widget class="QTreeView" name="treeViewHosts"/>
-   </item>
-   <item row="3" column="0">
-    <widget class="QCheckBox" name="checkBoxConnectOnClick">
+   <item row="4" column="0">
+    <widget class="QPushButton" name="saveNotesButton">
      <property name="text">
-      <string>Connect on click</string>
+      <string>Save Notes</string>
      </property>
     </widget>
    </item>

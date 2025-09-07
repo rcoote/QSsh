@@ -3,14 +3,17 @@ include(../qssh.pri)
 QT += gui widgets sql
 
 TARGET=hostmanager
-SOURCES+=main.cpp window.cpp \
+SOURCES+=main.cpp \
+    HostManagerWindow.cpp \
     treeitem.cpp \
     treemodel.cpp
-HEADERS+=window.h \
+HEADERS+=\
+    HostManagerWindow.h \
     treeitem.h \
     treemodel.h
-FORMS=window.ui \
-    mainwindow.ui
 
 RESOURCES += \
     resources.qrc
+
+FORMS += \
+    HostManagerWindow.ui

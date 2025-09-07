@@ -23,8 +23,8 @@
 **
 ****************************************************************************/
 
-#include "window.h"
-#include "ui_window.h"
+#include "HostManagerWindow.h"
+#include "ui_HostManagerWindow.h"
 
 #include <qssh/sftpfilesystemmodel.h>
 #include <qssh/sshconnection.h>
@@ -42,28 +42,32 @@ using namespace Qt::StringLiterals;
 
 using namespace QSsh;
 
-SftpFsWindow::SftpFsWindow(QWidget *parent) : QDialog(parent), m_ui(new Ui::Window)
+HostManagerWindow::HostManagerWindow(QWidget *parent) : QDialog(parent), m_ui(new Ui::Window)
 {
     m_ui->setupUi(this);
-    connect(m_ui->connectButton, &QAbstractButton::clicked, this, &SftpFsWindow::connectToHost);
-    connect(m_ui->downloadButton, &QAbstractButton::clicked, this, &SftpFsWindow::downloadFile);
-    connect(m_ui->treeViewHosts, &QTreeView::clicked, this, &SftpFsWindow::treeViewHostsClicked);
+
+    //Connect all SIGNALS
+    connect(m_ui->connectButton, &QAbstractButton::clicked, this, &HostManagerWindow::connectToHost);
+    connect(m_ui->downloadButton, &QAbstractButton::clicked, this, &HostManagerWindow::downloadFile);
+    connect(m_ui->treeViewHosts, &QTreeView::clicked, this, &HostManagerWindow::treeViewHostsClicked);
+    connect(m_ui->saveNotesButton, &QPushButton::clicked, this, &HostManagerWindow::buttonSaveNotesClicked);
+    connect(m_ui->fileSystemView, &QTreeView::clicked, this, &HostManagerWindow::fileSystemFileClicked);
 
     QFile file("hosts.txt"_L1);
     file.open(QIODevice::ReadOnly | QIODevice::Text);
-    hostModel = new TreeModel(QString::fromUtf8(file.readAll()));
+    hostsModel = new TreeModel(QString::fromUtf8(file.readAll()));
     file.close();
 
-    m_ui->treeViewHosts->setModel(hostModel);
+    m_ui->treeViewHosts->setModel(hostsModel);
     QSqlError err = connectToDatabase();
 }
 
-SftpFsWindow::~SftpFsWindow()
+HostManagerWindow::~HostManagerWindow()
 {
     delete m_ui;
 }
 
-void SftpFsWindow::connectToHost()
+void HostManagerWindow::connectToHost()
 {
     m_ui->connectButton->setEnabled(false);
     SshConnectionParameters sshParams;
@@ -76,22 +80,22 @@ void SftpFsWindow::connectToHost()
     sshParams.timeout = 10;
     m_fsModel = new SftpFileSystemModel(this);
     connect(m_fsModel, &SftpFileSystemModel::sftpOperationFailed,
-            this, &SftpFsWindow::handleSftpOperationFailed);
+            this, &HostManagerWindow::handleSftpOperationFailed);
     connect(m_fsModel, &SftpFileSystemModel::connectionError,
-            this, &SftpFsWindow::handleConnectionError);
+            this, &HostManagerWindow::handleConnectionError);
     connect(m_fsModel, &SftpFileSystemModel::sftpOperationFinished,
-            this, &SftpFsWindow::handleSftpOperationFinished);
+            this, &HostManagerWindow::handleSftpOperationFinished);
 
     connect(m_fsModel, &SftpFileSystemModel::sftpConnectionSuccess,
-            this, &SftpFsWindow::handleConnectionSuccess);
+            this, &HostManagerWindow::handleConnectionSuccess);
 
     m_fsModel->setSshConnection(sshParams);
-    m_ui->fsView->setModel(m_fsModel);
+    m_ui->fileSystemView->setModel(m_fsModel);
 }
 
-void SftpFsWindow::downloadFile()
+void HostManagerWindow::downloadFile()
 {
-    const QModelIndexList selectedIndexes = m_ui->fsView->selectionModel()->selectedIndexes();
+    const QModelIndexList selectedIndexes = m_ui->fileSystemView->selectionModel()->selectedIndexes();
     if (selectedIndexes.count() != 2)
         return;
     const QString targetFilePath = QFileDialog::getSaveFileName(this, tr("Choose Target File"),
@@ -107,12 +111,14 @@ void SftpFsWindow::downloadFile()
     m_ui->outputTextEdit->appendPlainText(message);
 }
 
-void SftpFsWindow::treeViewHostsClicked(const QModelIndex &index)
+void HostManagerWindow::treeViewHostsClicked(const QModelIndex &index)
 {
     QString hostname = index.data().toString();
+    currentHostName = hostname;
     QString lastDirectory;
     QString userName;
     QString password;
+    QString notes;
 
     qDebug() << "SftpFsWindow::treeViewHostsClicked Clicked on column: " << index.column() << ", row : " << index.row() <<  ", data :" << index.data().toString();
     qDebug() << "Retrieving credentials from DB in any exist";
@@ -123,25 +129,52 @@ void SftpFsWindow::treeViewHostsClicked(const QModelIndex &index)
         userName = query.value(1).toString();
         password = query.value(2).toString();
         lastDirectory = query.value(3).toString();
+        notes = query.value(4).toString();
         qDebug() << "Found hostname: " <<hostname;
         qDebug() << "Found userName: " <<userName;
         qDebug() << "Found password: " <<password;
         qDebug() << "Found lastDirectory: " <<lastDirectory;
+        qDebug() << "Found notes : " << notes ;
+
     }
 
-    setHostNameToConnectTo(hostname, userName, password, lastDirectory);
+    setHostNameToConnectTo(hostname, userName, password, lastDirectory, notes);
 
     // Check if connectOnClick Checkbox is ticked, and if yes, invoke the connect as well here
     if(m_ui->checkBoxConnectOnClick->isChecked())
         connectToHost();
 }
 
-void SftpFsWindow::handleSftpOperationFailed(const QString &errorMessage)
+void HostManagerWindow::buttonSaveNotesClicked()
+{
+    QString hostname = currentHostName;
+    QString notes = m_ui->hostNotesPlainTextEdit->toPlainText();
+
+    qDebug() << "Storing notes in DB";
+    QSqlQuery query("UPDATE hosts set notes = '" + notes + "' WHERE hostname = '" + hostname + "'" );
+    auto result  = query.exec();
+    qDebug() << "Result: " << result ;
+}
+
+void HostManagerWindow::fileSystemFileClicked(const QModelIndex &index)
+{
+    QString fulpat = m_fsModel->getFullPath(index);
+    qDebug() << "Fullpath. " << m_fsModel->getFullPath(index);
+    QString hostname = currentHostName;
+
+    qDebug() << "Storing path in DB";
+    QSqlQuery query("UPDATE hosts set lastpath = '" + fulpat + "' WHERE hostname = '" + hostname + "'" );
+    auto result  = query.exec();
+    qDebug() << "Result: " << result ;
+
+}
+
+void HostManagerWindow::handleSftpOperationFailed(const QString &errorMessage)
 {
     m_ui->outputTextEdit->appendPlainText(errorMessage);
 }
 
-void SftpFsWindow::handleSftpOperationFinished(SftpJobId jobId, const QString &error)
+void HostManagerWindow::handleSftpOperationFinished(SftpJobId jobId, const QString &error)
 {
     QString message;
     if (error.isEmpty())
@@ -151,21 +184,22 @@ void SftpFsWindow::handleSftpOperationFinished(SftpJobId jobId, const QString &e
     m_ui->outputTextEdit->appendPlainText(message);
 }
 
-void SftpFsWindow::setHostNameToConnectTo(QString _hostName, QString _userName, QString _password, QString _lastPath)
+void HostManagerWindow::setHostNameToConnectTo(QString _hostName, QString _userName, QString _password, QString _lastPath, QString _notes)
 {
     m_ui->hostLineEdit->setText(_hostName);
     m_ui->userLineEdit->setText(_userName);
     m_ui->passwordLineEdit->setText(_password);
+    m_ui->hostNotesPlainTextEdit->setPlainText(_notes);
 }
 
-void SftpFsWindow::handleConnectionError(const QString &errorMessage)
+void HostManagerWindow::handleConnectionError(const QString &errorMessage)
 {
     QMessageBox::warning(this, tr("Connection Error"),
         tr("Fatal SSH error: %1").arg(errorMessage));
     //QCoreApplication::quit();
 }
 
-void SftpFsWindow::handleConnectionSuccess()
+void HostManagerWindow::handleConnectionSuccess()
 {
     qDebug() << "Connection success, updating credentials...";
 
@@ -179,7 +213,7 @@ void SftpFsWindow::handleConnectionSuccess()
     //qDebug() << "Succ " << updateSuccess;
 }
 
-QSqlError SftpFsWindow::connectToDatabase()
+QSqlError HostManagerWindow::connectToDatabase()
 {
     QSqlError err;
     QSqlDatabase db = QSqlDatabase::addDatabase("QSQLITE");

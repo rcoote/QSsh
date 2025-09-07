@@ -34,37 +34,39 @@
 #include <QSqlQuery>
 #include <QSqlRecord>
 
-
 QT_BEGIN_NAMESPACE
 namespace Ui { class Window; }
 QT_END_NAMESPACE
 
 namespace QSsh { class SftpFileSystemModel; }
 
-class SftpFsWindow : public QDialog
+class HostManagerWindow : public QDialog
 {
     Q_OBJECT
 public:
-    SftpFsWindow(QWidget *parent = 0);
-    ~SftpFsWindow();
+    HostManagerWindow(QWidget *parent = 0);
+    ~HostManagerWindow();
 
 private:
+    //Members
+    QSsh::SftpFileSystemModel *m_fsModel;
+    Ui::Window *m_ui;
+    TreeModel *hostsModel;
+    QString currentHostName;
+
     void connectToHost();
     void downloadFile();
-    void treeViewHostsClicked(const QModelIndex &index);
-
     void handleConnectionError(const QString &errorMessage);
     void handleSftpOperationFailed(const QString &errorMessage);
     void handleSftpOperationFinished(QSsh::SftpJobId jobId, const QString &error);
     void handleConnectionSuccess();
+    void setHostNameToConnectTo(QString _hostName, QString _userName, QString _password, QString _lastPath, QString _notes);
 
-    void setHostNameToConnectTo(QString _hostName, QString _userName, QString _password, QString _lastPath);
+    // EVENTS
+    void treeViewHostsClicked(const QModelIndex &index);
+    void buttonSaveNotesClicked();
+    void fileSystemFileClicked(const QModelIndex &index);
 
     QSqlError connectToDatabase();
 
-    QSsh::SftpFileSystemModel *m_fsModel;
-
-    Ui::Window *m_ui;
-
-    TreeModel *hostModel;
 };
