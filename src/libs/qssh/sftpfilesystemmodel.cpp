@@ -194,6 +194,13 @@ QVariant SftpFileSystemModel::data(const QModelIndex &index, int role) const
     return QVariant();
 }
 
+QString SftpFileSystemModel::getFullPath(const QModelIndex &index) const
+{
+    const SftpFileNode * const node = indexToFileNode(index);
+    QString myPath = node->path;
+    return myPath;
+}
+
 Qt::ItemFlags SftpFileSystemModel::flags(const QModelIndex &index) const
 {
     if (!index.isValid())

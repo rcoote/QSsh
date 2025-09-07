@@ -64,6 +64,8 @@ public:
     static const int PathRole = Qt::UserRole;
     QVariant data(const QModelIndex &index, int role = Qt::DisplayRole) const;
 
+    QString getFullPath(const QModelIndex &index) const;
+
 signals:
      /*
       * E.g. "Permission denied". Note that this can happen without direct user intervention,
