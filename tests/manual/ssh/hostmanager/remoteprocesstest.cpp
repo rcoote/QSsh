@@ -54,12 +54,23 @@ RemoteProcessTest::RemoteProcessTest(const SshConnectionParameters &params)
     connect(m_timeoutTimer, SIGNAL(timeout()), SLOT(handleTimeout()));
 }
 
+RemoteProcessTest::RemoteProcessTest()
+    : m_timeoutTimer(new QTimer(this)),
+    m_sshConnection(0),
+    m_remoteRunner(new SshRemoteProcessRunner(this)),
+    m_state(Inactive)
+{
+    m_timeoutTimer->setInterval(25000);
+    connect(m_timeoutTimer, SIGNAL(timeout()), SLOT(handleTimeout()));
+}
+
+
 RemoteProcessTest::~RemoteProcessTest()
 {
     delete m_sshConnection;
 }
 
-void RemoteProcessTest::run()
+void RemoteProcessTest::run(QString _command)
 {
     connect(m_remoteRunner, SIGNAL(connectionError()),
         SLOT(handleConnectionError()));
@@ -74,7 +85,7 @@ void RemoteProcessTest::run()
     m_state = TestingSuccess;
     m_started = false;
     m_timeoutTimer->start();
-    m_remoteRunner->run("ping -c 1000 www.google.de", m_sshParams);
+    m_remoteRunner->run( _command.toUtf8(), m_sshParams);
 }
 
 void RemoteProcessTest::handleConnectionError()
@@ -107,7 +118,6 @@ void RemoteProcessTest::handleProcessStarted()
 
 void RemoteProcessTest::handleProcessStdout()
 {
-    qDebug() << "handling out ";
     if (!m_started) {
         std::cerr << "Error: Remote output from non-started process."
             << std::endl;
@@ -116,12 +126,8 @@ void RemoteProcessTest::handleProcessStdout()
         std::cerr << "Error: Got remote standard output in state " << m_state
             << "." << std::endl;
         QCoreApplication::exit(EXIT_FAILURE);
-        qDebug() << "handling out ";
-
     } else {
         m_remoteStdout += m_remoteRunner->readAllStandardOutput();
-        qDebug() << " out " << m_remoteStdout;
-
     }
 }
 
@@ -365,4 +371,14 @@ void RemoteProcessTest::handleSuccessfulIoTest()
             SLOT(handleReadyReadStderr()));
     m_echoProcess->start();
     m_timeoutTimer->start();
+}
+
+QSsh::SshConnectionParameters RemoteProcessTest::sshParams() const
+{
+    return m_sshParams;
+}
+
+void RemoteProcessTest::setSshParams(QSsh::SshConnectionParameters params)
+{
+    m_sshParams = params;
 }

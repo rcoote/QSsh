@@ -44,8 +44,13 @@ class RemoteProcessTest : public QObject
     Q_OBJECT
 public:
     RemoteProcessTest(const QSsh::SshConnectionParameters &params);
+    RemoteProcessTest();
     ~RemoteProcessTest();
-    void run();
+    void run(QString _command);
+
+    QSsh::SshConnectionParameters sshParams() const;
+
+    void setSshParams(QSsh::SshConnectionParameters params);
 
 private slots:
     void handleConnectionError();
@@ -69,7 +74,7 @@ private:
     void handleSuccessfulCrashTest();
     void handleSuccessfulIoTest();
 
-    const QSsh::SshConnectionParameters m_sshParams;
+    QSsh::SshConnectionParameters m_sshParams;
     QTimer * const m_timeoutTimer;
     QScopedPointer<QTextStream> m_textStream;
     QSsh::SshConnection *m_sshConnection;
@@ -81,6 +86,7 @@ private:
     QByteArray m_remoteData;
     State m_state;
     bool m_started;
+    Q_PROPERTY(QSsh::SshConnectionParameters sshParams READ sshParams CONSTANT FINAL)
 };
 
 

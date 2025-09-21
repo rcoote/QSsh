@@ -24,6 +24,17 @@
 **
 ****************************************************************************/
 
+
+#include <qssh/sshconnection.h>
+
+#include <QCoreApplication>
+#include <QObject>
+#include <QStringList>
+
+#include <cstdlib>
+#include <iostream>
+#include "argumentscollector.h"
+
 #include "HostManagerWindow.h"
 #include "qmainwindow.h"
 
@@ -41,4 +52,6 @@ int main(int argc, char *argv[])
     HostManagerWindow hostManagerWin1;
     hostManagerWin1.show();
     return app.exec();
+
 }
+

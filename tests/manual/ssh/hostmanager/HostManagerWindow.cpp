@@ -26,6 +26,8 @@
 #include "HostManagerWindow.h"
 #include "ui_HostManagerWindow.h"
 
+#include "remoteprocesstest.h"
+
 #include <qssh/sftpfilesystemmodel.h>
 #include <qssh/sshconnection.h>
 
@@ -51,6 +53,7 @@ HostManagerWindow::HostManagerWindow(QWidget *parent) : QDialog(parent), m_ui(ne
     connect(m_ui->downloadButton, &QAbstractButton::clicked, this, &HostManagerWindow::downloadFile);
     connect(m_ui->treeViewHosts, &QTreeView::clicked, this, &HostManagerWindow::treeViewHostsClicked);
     connect(m_ui->saveNotesButton, &QPushButton::clicked, this, &HostManagerWindow::buttonSaveNotesClicked);
+    connect(m_ui->pushButtonSendCommand, &QPushButton::clicked, this, &HostManagerWindow::buttonSendCommandClicked);
     connect(m_ui->fileSystemView, &QTreeView::clicked, this, &HostManagerWindow::fileSystemFileClicked);
 
     QFile file("hosts.txt"_L1);
@@ -60,6 +63,8 @@ HostManagerWindow::HostManagerWindow(QWidget *parent) : QDialog(parent), m_ui(ne
 
     m_ui->treeViewHosts->setModel(hostsModel);
     QSqlError err = connectToDatabase();
+
+    remoteProcessTest = new RemoteProcessTest();
 }
 
 HostManagerWindow::~HostManagerWindow()
@@ -78,6 +83,10 @@ void HostManagerWindow::connectToHost()
     sshParams.setPassword(m_ui->passwordLineEdit->text());
     sshParams.setPort(m_ui->portSpinBox->value());
     sshParams.timeout = 10;
+
+
+
+
     m_fsModel = new SftpFileSystemModel(this);
     connect(m_fsModel, &SftpFileSystemModel::sftpOperationFailed,
             this, &HostManagerWindow::handleSftpOperationFailed);
@@ -114,7 +123,7 @@ void HostManagerWindow::downloadFile()
 void HostManagerWindow::treeViewHostsClicked(const QModelIndex &index)
 {
     QString hostname = index.data().toString();
-    currentHostName = hostname;
+    m_currentHostName = hostname;
     QString lastDirectory;
     QString userName;
     QString password;
@@ -139,6 +148,7 @@ void HostManagerWindow::treeViewHostsClicked(const QModelIndex &index)
     }
 
     setHostNameToConnectTo(hostname, userName, password, lastDirectory, notes);
+    setSshParams(hostname, userName, password);
 
     // Check if connectOnClick Checkbox is ticked, and if yes, invoke the connect as well here
     if(m_ui->checkBoxConnectOnClick->isChecked())
@@ -147,7 +157,7 @@ void HostManagerWindow::treeViewHostsClicked(const QModelIndex &index)
 
 void HostManagerWindow::buttonSaveNotesClicked()
 {
-    QString hostname = currentHostName;
+    QString hostname = m_currentHostName;
     QString notes = m_ui->hostNotesPlainTextEdit->toPlainText();
 
     qDebug() << "Storing notes in DB";
@@ -156,11 +166,18 @@ void HostManagerWindow::buttonSaveNotesClicked()
     qDebug() << "Result: " << result ;
 }
 
+void HostManagerWindow::buttonSendCommandClicked()
+{
+    m_currentCommand = m_ui->remoteCommand->toPlainText();
+    remoteProcessTest->setSshParams(m_sshParams);
+    remoteProcessTest->run(m_currentCommand);
+}
+
 void HostManagerWindow::fileSystemFileClicked(const QModelIndex &index)
 {
     QString fulpat = m_fsModel->getFullPath(index);
     qDebug() << "Fullpath. " << m_fsModel->getFullPath(index);
-    QString hostname = currentHostName;
+    QString hostname = m_currentHostName;
 
     qDebug() << "Storing path in DB";
     QSqlQuery query("UPDATE hosts set lastpath = '" + fulpat + "' WHERE hostname = '" + hostname + "'" );
@@ -227,3 +244,15 @@ QSqlError HostManagerWindow::connectToDatabase()
 
     return err;
 }
+
+void HostManagerWindow::setSshParams(QString _hostname, QString _username, QString _password)
+{
+    m_sshParams.setHost(_hostname);
+    m_sshParams.setUserName(_username);
+    m_sshParams.authenticationType = SshConnectionParameters::AuthenticationTypeTryAllPasswordBasedMethods;
+    m_sshParams.setPassword(_password);
+    m_sshParams.setPort(22);
+    m_sshParams.timeout = 10;
+}
+
+
