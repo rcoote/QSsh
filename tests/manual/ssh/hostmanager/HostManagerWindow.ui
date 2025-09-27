@@ -75,7 +75,7 @@
      </property>
      <layout class="QVBoxLayout" name="verticalLayout_3">
       <item>
-       <widget class="QPlainTextEdit" name="remoteCommand"/>
+       <widget class="QPlainTextEdit" name="remoteCommands"/>
       </item>
       <item>
        <widget class="QPushButton" name="pushButtonSendCommand">

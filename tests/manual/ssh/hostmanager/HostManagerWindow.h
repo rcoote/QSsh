@@ -69,6 +69,7 @@ private:
     void handleSftpOperationFinished(QSsh::SftpJobId jobId, const QString &error);
     void handleConnectionSuccess();
     void setHostNameToConnectTo(QString _hostName, QString _userName, QString _password, QString _lastPath, QString _notes);
+    void setCommandSnippets(QString _commandSnippets);
 
     // EVENTS
     void treeViewHostsClicked(const QModelIndex &index);

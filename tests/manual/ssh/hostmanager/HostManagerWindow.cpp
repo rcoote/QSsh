@@ -82,7 +82,7 @@ void HostManagerWindow::connectToHost()
             = SshConnectionParameters::AuthenticationTypeTryAllPasswordBasedMethods;
     sshParams.setPassword(m_ui->passwordLineEdit->text());
     sshParams.setPort(m_ui->portSpinBox->value());
-    sshParams.timeout = 10;
+    sshParams.timeout = 5;
 
 
 
@@ -128,8 +128,9 @@ void HostManagerWindow::treeViewHostsClicked(const QModelIndex &index)
     QString userName;
     QString password;
     QString notes;
+    QString commandSnippets;
 
-    qDebug() << "SftpFsWindow::treeViewHostsClicked Clicked on column: " << index.column() << ", row : " << index.row() <<  ", data :" << index.data().toString();
+    //qDebug() << "SftpFsWindow::treeViewHostsClicked Clicked on column: " << index.column() << ", row : " << index.row() <<  ", data :" << index.data().toString();
     qDebug() << "Retrieving credentials from DB in any exist";
 
     QSqlQuery query("SELECT * FROM hosts where hostname = '" + hostname + "'");
@@ -139,15 +140,18 @@ void HostManagerWindow::treeViewHostsClicked(const QModelIndex &index)
         password = query.value(2).toString();
         lastDirectory = query.value(3).toString();
         notes = query.value(4).toString();
+        commandSnippets = query.value(5).toString();
         qDebug() << "Found hostname: " <<hostname;
         qDebug() << "Found userName: " <<userName;
         qDebug() << "Found password: " <<password;
         qDebug() << "Found lastDirectory: " <<lastDirectory;
         qDebug() << "Found notes : " << notes ;
+        qDebug() << "Found commandSnippets: " << commandSnippets;
 
     }
 
     setHostNameToConnectTo(hostname, userName, password, lastDirectory, notes);
+    setCommandSnippets(commandSnippets);
     setSshParams(hostname, userName, password);
 
     // Check if connectOnClick Checkbox is ticked, and if yes, invoke the connect as well here
@@ -168,7 +172,7 @@ void HostManagerWindow::buttonSaveNotesClicked()
 
 void HostManagerWindow::buttonSendCommandClicked()
 {
-    QTextCursor theCursor = m_ui->remoteCommand->textCursor();
+    QTextCursor theCursor = m_ui->remoteCommands->textCursor();
 
     if(!theCursor.hasSelection())
     {
@@ -221,6 +225,11 @@ void HostManagerWindow::setHostNameToConnectTo(QString _hostName, QString _userN
     m_ui->hostNotesPlainTextEdit->setPlainText(_notes);
 }
 
+void HostManagerWindow::setCommandSnippets(QString _commandSnippets)
+{
+    m_ui->remoteCommands->setPlainText(_commandSnippets);
+}
+
 void HostManagerWindow::handleConnectionError(const QString &errorMessage)
 {
     QMessageBox::warning(this, tr("Connection Error"),
@@ -264,7 +273,7 @@ void HostManagerWindow::setSshParams(QString _hostname, QString _username, QStri
     m_sshParams.authenticationType = SshConnectionParameters::AuthenticationTypeTryAllPasswordBasedMethods;
     m_sshParams.setPassword(_password);
     m_sshParams.setPort(22);
-    m_sshParams.timeout = 10;
+    m_sshParams.timeout = 5;
 }
 
 

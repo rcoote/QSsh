@@ -50,7 +50,7 @@ RemoteProcessTest::RemoteProcessTest(const SshConnectionParameters &params)
     m_remoteRunner(new SshRemoteProcessRunner(this)),
     m_state(Inactive)
 {
-    m_timeoutTimer->setInterval(25000);
+    m_timeoutTimer->setInterval(2500);
     connect(m_timeoutTimer, SIGNAL(timeout()), SLOT(handleTimeout()));
 }
 
