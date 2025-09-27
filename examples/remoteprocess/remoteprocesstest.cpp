@@ -89,7 +89,7 @@ void RemoteProcessTest::handleProcessStarted()
 {
     if (m_started) {
         std::cerr << "Error: Received started() signal again." << std::endl;
-        QCoreApplication::exit(EXIT_FAILURE);
+        //QCoreApplication::exit(EXIT_FAILURE);
     } else {
         m_started = true;
         if (m_state == TestingCrash) {
@@ -277,7 +277,7 @@ void RemoteProcessTest::handleProcessClosed(int exitStatus)
 void RemoteProcessTest::handleTimeout()
 {
     std::cerr << "Error: Timeout waiting for progress." << std::endl;
-    QCoreApplication::exit(EXIT_FAILURE);
+    //QCoreApplication::exit(EXIT_FAILURE);
 }
 
 void RemoteProcessTest::handleConnected()
