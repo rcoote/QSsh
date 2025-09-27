@@ -5,4 +5,4 @@
 #-------------------------------------------------
 
 TEMPLATE = subdirs
-SUBDIRS = sftpfsmodel
+SUBDIRS = sftpfsmodel hostmanager
