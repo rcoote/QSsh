@@ -168,7 +168,19 @@ void HostManagerWindow::buttonSaveNotesClicked()
 
 void HostManagerWindow::buttonSendCommandClicked()
 {
-    m_currentCommand = m_ui->remoteCommand->toPlainText();
+    QTextCursor theCursor = m_ui->remoteCommand->textCursor();
+
+    if(!theCursor.hasSelection())
+    {
+        qDebug() << "No Command selected";
+    }
+    else
+    {
+        qDebug() << "Selected command is: " << theCursor.selectedText();
+        m_currentCommand = theCursor.selectedText();
+        qDebug() << "executing " << m_currentCommand ;
+    }
+
     remoteProcessTest->setSshParams(m_sshParams);
     remoteProcessTest->run(m_currentCommand);
 }
