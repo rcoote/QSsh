@@ -160,7 +160,7 @@ SshConnection::~SshConnection()
 {
     disconnect();
     disconnectFromHost();
-    delete d;
+    //delete d;
 }
 
 QSharedPointer<SshRemoteProcess> SshConnection::createRemoteProcess(const QByteArray &command)
