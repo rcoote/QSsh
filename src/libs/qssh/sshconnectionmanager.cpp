@@ -39,7 +39,7 @@
 #include <QObject>
 #include <QThread>
 #include <QTimer>
-
+#include <QDebug>
 namespace QSsh {
 namespace Internal {
 class UnaquiredConnection {
@@ -74,7 +74,14 @@ public:
     {
         for (const UnaquiredConnection &connection : m_unacquiredConnections) {
             disconnect(connection.connection, nullptr, this, nullptr);
-            delete connection.connection;
+            if(connection.connection != NULL)
+            {
+                qDebug() << "deleting connection.connection;";
+                delete connection.connection;
+            }
+            else
+                qDebug() << "deleting null";
+
         }
 
         QSSH_ASSERT(m_acquiredConnections.isEmpty());
