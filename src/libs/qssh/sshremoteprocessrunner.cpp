@@ -32,6 +32,8 @@
 
 #include "sshconnectionmanager.h"
 #include "sshpseudoterminal.h"
+#include <QDebug>
+#include <iostream>
 
 namespace QSsh {
 namespace Internal {
@@ -253,6 +255,8 @@ QByteArray SshRemoteProcessRunner::readAllStandardOutput()
 {
     const QByteArray data = d->m_stdout;
     d->m_stdout.clear();
+    QString content = data;
+    std::cout << data.toStdString();
     return data;
 }
 
