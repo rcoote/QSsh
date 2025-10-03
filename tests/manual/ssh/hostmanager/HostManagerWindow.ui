@@ -78,11 +78,22 @@
        <widget class="QPlainTextEdit" name="remoteCommands"/>
       </item>
       <item>
-       <widget class="QPushButton" name="pushButtonSendCommand">
-        <property name="text">
-         <string>send command</string>
-        </property>
-       </widget>
+       <layout class="QHBoxLayout" name="horizontalLayout_4">
+        <item>
+         <widget class="QPushButton" name="pushButtonSaveCommands">
+          <property name="text">
+           <string>save commands</string>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <widget class="QPushButton" name="pushButtonSendCommand">
+          <property name="text">
+           <string>send command</string>
+          </property>
+         </widget>
+        </item>
+       </layout>
       </item>
      </layout>
     </widget>

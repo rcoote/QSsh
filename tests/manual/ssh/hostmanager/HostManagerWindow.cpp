@@ -53,7 +53,11 @@ HostManagerWindow::HostManagerWindow(QWidget *parent) : QDialog(parent), m_ui(ne
     connect(m_ui->downloadButton, &QAbstractButton::clicked, this, &HostManagerWindow::downloadFile);
     connect(m_ui->treeViewHosts, &QTreeView::clicked, this, &HostManagerWindow::treeViewHostsClicked);
     connect(m_ui->saveNotesButton, &QPushButton::clicked, this, &HostManagerWindow::buttonSaveNotesClicked);
+
     connect(m_ui->pushButtonSendCommand, &QPushButton::clicked, this, &HostManagerWindow::buttonSendCommandClicked);
+
+    connect(m_ui->pushButtonSaveCommands, &QPushButton::clicked, this, &HostManagerWindow::buttonSaveCommandsClicked);
+
     connect(m_ui->fileSystemView, &QTreeView::clicked, this, &HostManagerWindow::fileSystemFileClicked);
 
     QFile file("hosts.txt"_L1);
@@ -187,6 +191,17 @@ void HostManagerWindow::buttonSendCommandClicked()
 
     remoteProcessTest->setSshParams(m_sshParams);
     remoteProcessTest->run(m_currentCommand);
+}
+
+void HostManagerWindow::buttonSaveCommandsClicked()
+{
+    QString hostname = m_currentHostName;
+    QString commands = m_ui->remoteCommands->toPlainText();
+
+    qDebug() << "Storing commands in DB";
+    QSqlQuery query("UPDATE hosts set commandSnippets = '" + commands + "' WHERE hostname = '" + hostname + "'" );
+    auto result  = query.exec();
+    qDebug() << "Result: " << result ;
 }
 
 void HostManagerWindow::fileSystemFileClicked(const QModelIndex &index)

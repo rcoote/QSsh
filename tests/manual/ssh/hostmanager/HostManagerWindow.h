@@ -75,6 +75,7 @@ private:
     void treeViewHostsClicked(const QModelIndex &index);
     void buttonSaveNotesClicked();
     void buttonSendCommandClicked();
+    void buttonSaveCommandsClicked();
     void fileSystemFileClicked(const QModelIndex &index);
 
     QSqlError connectToDatabase();
