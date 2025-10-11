@@ -4,3 +4,7 @@ Inspired by "It's a UNIX system I know this" - one of my favorite childhood movi
 https://www.reddit.com/r/MovieDetails/comments/89p4n4/in_jurassic_park_the_infamous_its_a_unix_system_i/?show=original
 
 
+Todo list:
+
+*  Add 3D View
+*  Add MQTT Client (each host can supply an MQTT Data to a Broker)
