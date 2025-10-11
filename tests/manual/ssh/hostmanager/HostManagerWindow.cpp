@@ -53,11 +53,9 @@ HostManagerWindow::HostManagerWindow(QWidget *parent) : QDialog(parent), m_ui(ne
     connect(m_ui->downloadButton, &QAbstractButton::clicked, this, &HostManagerWindow::downloadFile);
     connect(m_ui->treeViewHosts, &QTreeView::clicked, this, &HostManagerWindow::treeViewHostsClicked);
     connect(m_ui->saveNotesButton, &QPushButton::clicked, this, &HostManagerWindow::buttonSaveNotesClicked);
-
     connect(m_ui->pushButtonSendCommand, &QPushButton::clicked, this, &HostManagerWindow::buttonSendCommandClicked);
-
     connect(m_ui->pushButtonSaveCommands, &QPushButton::clicked, this, &HostManagerWindow::buttonSaveCommandsClicked);
-
+    connect(m_ui->pushButtonSaveCredentials, &QPushButton::clicked, this, &HostManagerWindow::buttonSaveCredentialsClicked);
     connect(m_ui->fileSystemView, &QTreeView::clicked, this, &HostManagerWindow::fileSystemFileClicked);
 
     QFile file("hosts.txt"_L1);
@@ -85,11 +83,8 @@ void HostManagerWindow::connectToHost()
     sshParams.authenticationType
             = SshConnectionParameters::AuthenticationTypeTryAllPasswordBasedMethods;
     sshParams.setPassword(m_ui->passwordLineEdit->text());
-    sshParams.setPort(m_ui->portSpinBox->value());
+
     sshParams.timeout = 5;
-
-
-
 
     m_fsModel = new SftpFileSystemModel(this);
     connect(m_fsModel, &SftpFileSystemModel::sftpOperationFailed,
@@ -174,6 +169,24 @@ void HostManagerWindow::buttonSaveNotesClicked()
     qDebug() << "Result: " << result ;
 }
 
+void HostManagerWindow::buttonSaveCredentialsClicked()
+{
+    qDebug() << "Updating credentials...";
+
+    QString hostName = m_ui->hostLineEdit->text();
+    QString userName = m_ui->userLineEdit->text();
+    QString password = m_ui->passwordLineEdit->text();
+
+    QSqlQuery query("INSERT INTO hosts (hostname) VALUES ('" + hostName + "')" );
+
+    query = QSqlQuery("update hosts set username = '" + userName + "' where hostname = '" + hostName + "'" );
+    auto result  = query.exec();
+
+    query = QSqlQuery("update hosts set password = '" + password + "' where hostname = '" + hostName + "'");
+    result  = query.exec();
+
+    qDebug() << "Update result: " << result ;
+}
 void HostManagerWindow::buttonSendCommandClicked()
 {
     QTextCursor theCursor = m_ui->remoteCommands->textCursor();

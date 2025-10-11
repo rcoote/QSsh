@@ -76,6 +76,7 @@ private:
     void buttonSaveNotesClicked();
     void buttonSendCommandClicked();
     void buttonSaveCommandsClicked();
+    void buttonSaveCredentialsClicked();
     void fileSystemFileClicked(const QModelIndex &index);
 
     QSqlError connectToDatabase();
