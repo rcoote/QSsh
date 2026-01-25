@@ -83,7 +83,7 @@ void HostManagerWindow::connectToHost()
     sshParams.authenticationType
             = SshConnectionParameters::AuthenticationTypeTryAllPasswordBasedMethods;
     sshParams.setPassword(m_ui->passwordLineEdit->text());
-
+    sshParams.setPort(22);
     sshParams.timeout = 5;
 
     m_fsModel = new SftpFileSystemModel(this);
