@@ -19,11 +19,19 @@ sudo apt install libgl1-mesa-dev
 sudo apt-get install pkg-config
 sudo apt-get install libbotan-2-dev
 
-# Installation
+# MQTT
+## Build MQTT for QT under Windows
+Follow these instructions:
+https://www.emqx.com/en/blog/how-to-create-an-mqtt-application-in-qt6#common-compiling-errors-in-qt-creator
 
+## Linux
+Under Linux use your repo manager zypper, apt-get to install libqt6mqtt.
+
+# Installation
 
 Todo list:
 *  Add 2D View
 *  Add 3D View
 *  Add MQTT Client (each host can supply an MQTT Data to a Broker)
 *  Add terminal to connect remotley to any ssh host
+
