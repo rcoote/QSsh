@@ -19,6 +19,9 @@ sudo apt install libgl1-mesa-dev
 sudo apt-get install pkg-config
 sudo apt-get install libbotan-2-dev
 
+For windows follow these instructions:
+https://botan.randombit.net/handbook/building.html#on-windows
+
 # MQTT
 ## Build MQTT for QT under Windows
 Follow these instructions:
