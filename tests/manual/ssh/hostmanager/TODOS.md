@@ -1,18 +1,17 @@
-# First Level Heading
+# Todo list (17/05/2026)
 
 Paragraph.
 
-# Todo list (17/05/2026):
+1.  Add MQTT Client (each host can supply an MQTT Data to a Broker)
 *  Add 2D View
 *  Add 3D View
-*  Add MQTT Client (each host can supply an MQTT Data to a Broker)
 *  Add terminal to connect remotely to any ssh host
 
-## Second Level Heading
+## MQTT Todos (Prio 1)
 
-Paragraph.
+Implement these:
 
-- bullet
+- Add Menu and Preferences Dialog to setup mqtt broker hostname and port
 + other bullet
 * another bullet
     * child bullet
