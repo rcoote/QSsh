@@ -10,11 +10,13 @@ Paragraph.
 ## MQTT Todos (Prio 1)
 
 Implement these:
-
 - Add Menu and Preferences Dialog to setup mqtt broker hostname and port
+    * Add separate clean QMainWindow (keep the Dialog)
+    * move stepwise widgets to the main window as needed    
+
 + other bullet
 * another bullet
-    * child bullet
+
 
 1. ordered
 2. next ordered
