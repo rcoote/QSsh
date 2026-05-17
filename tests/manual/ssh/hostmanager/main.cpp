@@ -37,7 +37,7 @@
 
 #include "HostManagerWindow.h"
 #include "qmainwindow.h"
-
+#include "mainwindow.h"
 #include <qssh/sftpfilesystemmodel.h>
 #include <qssh/sshconnection.h>
 
@@ -51,6 +51,10 @@ int main(int argc, char *argv[])
     QApplication app(argc, argv);
     HostManagerWindow hostManagerWin1;
     hostManagerWin1.show();
+
+    MainWindow myMainWindow;
+    myMainWindow.show();
+
     return app.exec();
 
 }

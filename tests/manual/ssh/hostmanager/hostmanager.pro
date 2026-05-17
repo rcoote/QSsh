@@ -6,6 +6,7 @@ TARGET=hostmanager
 SOURCES+=main.cpp \
     HostManagerWindow.cpp \
     argumentscollector.cpp \
+    mainwindow.cpp \
     remoteprocesstest.cpp \
     treeitem.cpp \
     treemodel.cpp
@@ -13,6 +14,7 @@ SOURCES+=main.cpp \
 HEADERS+=\
     HostManagerWindow.h \
     argumentscollector.h \
+    mainwindow.h \
     remoteprocesstest.h \
     treeitem.h \
     treemodel.h
@@ -21,7 +23,8 @@ RESOURCES += \
     resources.qrc
 
 FORMS += \
-    HostManagerWindow.ui
+    HostManagerWindow.ui \
+    mainwindow.ui
 
 DISTFILES += \
     README.md \
