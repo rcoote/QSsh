@@ -154,9 +154,9 @@
      borderopacity="1.0"
      inkscape:pageopacity="0.0"
      inkscape:pageshadow="2"
-     inkscape:zoom="2.8"
-     inkscape:cx="169.07446"
-     inkscape:cy="364.02268"
+     inkscape:zoom="1.4"
+     inkscape:cx="399.13087"
+     inkscape:cy="248.54614"
      inkscape:document-units="mm"
      inkscape:current-layer="layer1"
      inkscape:document-rotation="0"
@@ -188,26 +188,34 @@
        width="108.57011"
        height="81.61692"
        x="90.720413"
-       y="39.867599" />
+       y="39.867599"
+       inkscape:export-xdpi="96"
+       inkscape:export-ydpi="96" />
     <rect
        style="fill:#e6e6e6;stroke:#808080;stroke-width:0.11607;stroke-miterlimit:4;stroke-dasharray:none"
        id="rect12"
        width="63.824326"
        height="27.74609"
        x="20.076075"
-       y="39.430538" />
+       y="39.430538"
+       inkscape:export-xdpi="96"
+       inkscape:export-ydpi="96" />
     <text
        xml:space="preserve"
        id="text837"
        style="font-style:normal;font-weight:normal;font-size:10.5833px;line-height:1.25;font-family:sans-serif;white-space:pre;shape-inside:url(#rect839);fill:#000000;fill-opacity:1;stroke:none;"
-       transform="matrix(0.44512181,0,0,0.44512181,4.9429303,31.091369)"><tspan
+       transform="matrix(0.44512181,0,0,0.44512181,4.9429303,31.091369)"
+       inkscape:export-xdpi="96"
+       inkscape:export-ydpi="96"><tspan
          x="41.875"
          y="29.782343"><tspan>Preferences</tspan></tspan></text>
     <text
        xml:space="preserve"
        id="text837-6"
        style="font-style:normal;font-weight:normal;font-size:10.5833px;line-height:1.25;font-family:sans-serif;white-space:pre;shape-inside:url(#rect839-3);fill:#000000;fill-opacity:1;stroke:none;"
-       transform="matrix(0.4451218,0,0,0.4451218,73.323832,31.681286)"><tspan
+       transform="matrix(0.4451218,0,0,0.4451218,73.323832,31.681286)"
+       inkscape:export-xdpi="96"
+       inkscape:export-ydpi="96"><tspan
          x="41.875"
          y="29.782343"><tspan>Nodes</tspan></tspan></text>
     <rect
@@ -216,19 +224,25 @@
        width="29.987391"
        height="46.431431"
        x="92.403503"
-       y="47.550781" />
+       y="47.550781"
+       inkscape:export-xdpi="96"
+       inkscape:export-ydpi="96" />
     <rect
        style="fill:#ffffff;stroke:#808080;stroke-width:0.175814;stroke-miterlimit:4;stroke-dasharray:none"
        id="rect12-7-5"
        width="65.110481"
        height="62.401844"
        x="129.73366"
-       y="47.697231" />
+       y="47.697231"
+       inkscape:export-xdpi="96"
+       inkscape:export-ydpi="96" />
     <text
        xml:space="preserve"
        id="text837-6-5"
        style="font-style:normal;font-weight:normal;font-size:10.5833px;line-height:1.25;font-family:sans-serif;white-space:pre;shape-inside:url(#rect839-3-3);fill:#000000;fill-opacity:1;stroke:none;"
-       transform="matrix(0.4451218,0,0,0.4451218,110.61754,31.793305)"><tspan
+       transform="matrix(0.4451218,0,0,0.4451218,110.61754,31.793305)"
+       inkscape:export-xdpi="96"
+       inkscape:export-ydpi="96"><tspan
          x="41.875"
          y="29.782343"><tspan>Messages</tspan></tspan></text>
     <rect
@@ -237,19 +251,25 @@
        width="52.373943"
        height="17.356657"
        x="24.012724"
-       y="45.706959" />
+       y="45.706959"
+       inkscape:export-xdpi="96"
+       inkscape:export-ydpi="96" />
     <rect
        style="fill:#e6e6e6;stroke:#808080;stroke-width:0.139406;stroke-miterlimit:4;stroke-dasharray:none"
        id="rect12-9"
        width="56.952675"
        height="44.853481"
        x="20.041325"
-       y="71.160904" />
+       y="71.160904"
+       inkscape:export-xdpi="96"
+       inkscape:export-ydpi="96" />
     <text
        xml:space="preserve"
        id="text837-1"
        style="font-style:normal;font-weight:normal;font-size:10.5833px;line-height:1.25;font-family:sans-serif;white-space:pre;shape-inside:url(#rect839-2);fill:#000000;fill-opacity:1;stroke:none;"
-       transform="matrix(0.4451218,0,0,0.4451218,4.8965114,62.810074)"><tspan
+       transform="matrix(0.4451218,0,0,0.4451218,4.8965114,62.810074)"
+       inkscape:export-xdpi="96"
+       inkscape:export-ydpi="96"><tspan
          x="41.875"
          y="29.782343"><tspan>Map</tspan></tspan></text>
     <rect
@@ -258,7 +278,9 @@
        width="50.482758"
        height="35.529415"
        x="23.983133"
-       y="77.442482" />
+       y="77.442482"
+       inkscape:export-xdpi="96"
+       inkscape:export-ydpi="96" />
     <image
        width="47.829586"
        height="32.722755"
@@ -21110,12 +21132,16 @@ NPFye0OqBCkVnmvKlf4PMeSp3sbatZsAAAAASUVORK5CYII=
 "
        id="image1065"
        x="25.317337"
-       y="79.122353" />
+       y="79.122353"
+       inkscape:export-xdpi="96"
+       inkscape:export-ydpi="96" />
     <text
        xml:space="preserve"
        id="text837-6-0"
        style="font-style:normal;font-weight:normal;font-size:7.92542px;line-height:1.25;font-family:sans-serif;white-space:pre;shape-inside:url(#rect839-3-7);fill:#000000;fill-opacity:1;stroke:none;"
-       transform="matrix(0.4451218,0,0,0.4451218,76.13038,40.56351)"><tspan
+       transform="matrix(0.4451218,0,0,0.4451218,76.13038,40.56351)"
+       inkscape:export-xdpi="96"
+       inkscape:export-ydpi="96"><tspan
          x="41.875"
          y="27.338368"><tspan
            style="font-size:7.92542px">Zone A</tspan></tspan></text>
@@ -21123,7 +21149,9 @@ NPFye0OqBCkVnmvKlf4PMeSp3sbatZsAAAAASUVORK5CYII=
        xml:space="preserve"
        id="text837-6-0-3"
        style="font-style:normal;font-weight:normal;font-size:7.92542px;line-height:1.25;font-family:sans-serif;white-space:pre;shape-inside:url(#rect839-3-7-9);fill:#000000;fill-opacity:1;stroke:none;"
-       transform="matrix(0.4451218,0,0,0.4451218,78.379963,45.404367)"><tspan
+       transform="matrix(0.4451218,0,0,0.4451218,78.379963,45.404367)"
+       inkscape:export-xdpi="96"
+       inkscape:export-ydpi="96"><tspan
          x="41.875"
          y="27.338368"><tspan>Section 1</tspan></tspan></text>
     <rect
@@ -21132,12 +21160,16 @@ NPFye0OqBCkVnmvKlf4PMeSp3sbatZsAAAAASUVORK5CYII=
        width="32.755814"
        height="19.544233"
        x="35.201637"
-       y="85.599182" />
+       y="85.599182"
+       inkscape:export-xdpi="96"
+       inkscape:export-ydpi="96" />
     <text
        xml:space="preserve"
        id="text837-6-0-7"
        style="font-style:normal;font-weight:normal;font-size:7.92542px;line-height:1.25;font-family:sans-serif;white-space:pre;shape-inside:url(#rect839-3-7-2);fill:#000000;fill-opacity:1;stroke:none;"
-       transform="matrix(0.4451218,0,0,0.4451218,18.945075,78.628472)"><tspan
+       transform="matrix(0.4451218,0,0,0.4451218,18.945075,78.628472)"
+       inkscape:export-xdpi="96"
+       inkscape:export-ydpi="96"><tspan
          x="41.875"
          y="27.338368"><tspan
            style="font-size:7.92542px">Zone A</tspan></tspan></text>
@@ -21145,14 +21177,18 @@ NPFye0OqBCkVnmvKlf4PMeSp3sbatZsAAAAASUVORK5CYII=
        xml:space="preserve"
        id="text837-6-0-3-9"
        style="font-style:normal;font-weight:normal;font-size:7.92542px;line-height:1.25;font-family:sans-serif;white-space:pre;shape-inside:url(#rect839-3-7-9-6);fill:#000000;fill-opacity:1;stroke:none;"
-       transform="matrix(0.4451218,0,0,0.4451218,31.27376,78.662923)"><tspan
+       transform="matrix(0.4451218,0,0,0.4451218,31.27376,78.662923)"
+       inkscape:export-xdpi="96"
+       inkscape:export-ydpi="96"><tspan
          x="41.875"
          y="27.338368"><tspan>- Section 1</tspan></tspan></text>
     <text
        xml:space="preserve"
        id="text837-6-0-3-0"
        style="font-style:normal;font-weight:normal;font-size:6.34034px;line-height:1.25;font-family:sans-serif;white-space:pre;shape-inside:url(#rect839-3-7-9-2);fill:#000000;fill-opacity:1;stroke:none;"
-       transform="matrix(0.4451218,0,0,0.4451218,80.810443,50.403339)"><tspan
+       transform="matrix(0.4451218,0,0,0.4451218,80.810443,50.403339)"
+       inkscape:export-xdpi="96"
+       inkscape:export-ydpi="96"><tspan
          x="41.875"
          y="25.880854"><tspan
            style="font-style:italic;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:6.34034px;font-family:sans-serif;-inkscape-font-specification:'sans-serif Italic'">Node A3Z</tspan></tspan></text>
@@ -21160,7 +21196,9 @@ NPFye0OqBCkVnmvKlf4PMeSp3sbatZsAAAAASUVORK5CYII=
        xml:space="preserve"
        id="text837-6-0-3-0-3"
        style="font-style:normal;font-weight:normal;font-size:6.34034px;line-height:1.25;font-family:sans-serif;white-space:pre;shape-inside:url(#rect839-3-7-9-2-2);fill:#000000;fill-opacity:1;stroke:none;"
-       transform="matrix(0.33461868,0,0,0.33461868,42.817515,91.584514)"><tspan
+       transform="matrix(0.33461868,0,0,0.33461868,42.817515,91.584514)"
+       inkscape:export-xdpi="96"
+       inkscape:export-ydpi="96"><tspan
          x="41.875"
          y="25.880854"><tspan
            style="font-style:italic;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:6.34034px;font-family:sans-serif;-inkscape-font-specification:'sans-serif Italic'">Node A3Z</tspan></tspan></text>
@@ -21169,6 +21207,8 @@ NPFye0OqBCkVnmvKlf4PMeSp3sbatZsAAAAASUVORK5CYII=
        id="path1268"
        cx="55.536911"
        cy="97.799461"
-       r="0.51087773" />
+       r="0.51087773"
+       inkscape:export-xdpi="96"
+       inkscape:export-ydpi="96" />
   </g>
 </svg>
