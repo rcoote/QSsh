@@ -22,3 +22,7 @@ RESOURCES += \
 
 FORMS += \
     HostManagerWindow.ui
+
+DISTFILES += \
+    README.md \
+    TODOS.md
