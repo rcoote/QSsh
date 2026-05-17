@@ -11,12 +11,12 @@ Paragraph.
 
 Implement these:
 - Add Menu and Preferences Dialog to setup mqtt broker hostname and port
-    * Add separate clean QMainWindow (keep the Dialog)
-    * move stepwise widgets to the main window as needed    
+    * Add separate clean QMainWindow (keep the Dialog) - ✓ 
+    * move stepwise widgets to the main window as needed - ☐
+    * Onclick preferences -> open Dialog - ☐
 
-+ other bullet
-* another bullet
-
++ task 2
+* task 3
 
 1. ordered
 2. next ordered
