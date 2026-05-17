@@ -62,6 +62,90 @@
        width="69.232353"
        height="16.303274"
        id="rect1015" />
+    <rect
+       x="41.874889"
+       y="20.050928"
+       width="100.80269"
+       height="16.931055"
+       id="rect839-3-7" />
+    <rect
+       x="41.874889"
+       y="20.050928"
+       width="100.80269"
+       height="16.931055"
+       id="rect1078" />
+    <rect
+       x="41.874889"
+       y="20.050928"
+       width="100.80269"
+       height="16.931055"
+       id="rect839-3-7-9" />
+    <rect
+       x="41.874889"
+       y="20.050928"
+       width="100.80269"
+       height="16.931055"
+       id="rect1107" />
+    <rect
+       x="41.874889"
+       y="20.050928"
+       width="100.80269"
+       height="16.931055"
+       id="rect839-3-6" />
+    <rect
+       x="41.874889"
+       y="20.050928"
+       width="100.80269"
+       height="16.931055"
+       id="rect1151" />
+    <rect
+       x="41.874889"
+       y="20.050928"
+       width="100.80269"
+       height="16.931055"
+       id="rect839-3-7-2" />
+    <rect
+       x="41.874889"
+       y="20.050928"
+       width="100.80269"
+       height="16.931055"
+       id="rect1154" />
+    <rect
+       x="41.874889"
+       y="20.050928"
+       width="100.80269"
+       height="16.931055"
+       id="rect839-3-7-9-6" />
+    <rect
+       x="41.874889"
+       y="20.050928"
+       width="100.80269"
+       height="16.931055"
+       id="rect1157" />
+    <rect
+       x="41.874889"
+       y="20.050928"
+       width="100.80269"
+       height="16.931055"
+       id="rect839-3-7-9-2" />
+    <rect
+       x="41.874889"
+       y="20.050928"
+       width="100.80269"
+       height="16.931055"
+       id="rect1218" />
+    <rect
+       x="41.874889"
+       y="20.050928"
+       width="100.80269"
+       height="16.931055"
+       id="rect839-3-7-9-2-2" />
+    <rect
+       x="41.874889"
+       y="20.050928"
+       width="100.80269"
+       height="16.931055"
+       id="rect1248" />
   </defs>
   <sodipodi:namedview
      id="base"
@@ -70,9 +154,9 @@
      borderopacity="1.0"
      inkscape:pageopacity="0.0"
      inkscape:pageshadow="2"
-     inkscape:zoom="0.98994949"
-     inkscape:cx="409.44536"
-     inkscape:cy="371.33232"
+     inkscape:zoom="2.8"
+     inkscape:cx="169.07446"
+     inkscape:cy="364.02268"
      inkscape:document-units="mm"
      inkscape:current-layer="layer1"
      inkscape:document-rotation="0"
@@ -21027,5 +21111,64 @@ NPFye0OqBCkVnmvKlf4PMeSp3sbatZsAAAAASUVORK5CYII=
        id="image1065"
        x="25.317337"
        y="79.122353" />
+    <text
+       xml:space="preserve"
+       id="text837-6-0"
+       style="font-style:normal;font-weight:normal;font-size:7.92542px;line-height:1.25;font-family:sans-serif;white-space:pre;shape-inside:url(#rect839-3-7);fill:#000000;fill-opacity:1;stroke:none;"
+       transform="matrix(0.4451218,0,0,0.4451218,76.13038,40.56351)"><tspan
+         x="41.875"
+         y="27.338368"><tspan
+           style="font-size:7.92542px">Zone A</tspan></tspan></text>
+    <text
+       xml:space="preserve"
+       id="text837-6-0-3"
+       style="font-style:normal;font-weight:normal;font-size:7.92542px;line-height:1.25;font-family:sans-serif;white-space:pre;shape-inside:url(#rect839-3-7-9);fill:#000000;fill-opacity:1;stroke:none;"
+       transform="matrix(0.4451218,0,0,0.4451218,78.379963,45.404367)"><tspan
+         x="41.875"
+         y="27.338368"><tspan>Section 1</tspan></tspan></text>
+    <rect
+       style="fill:#ffffff;stroke:#1a1a1a;stroke-width:0.27;stroke-miterlimit:4;stroke-dasharray:none;opacity:0.26392159"
+       id="rect12-7-8"
+       width="32.755814"
+       height="19.544233"
+       x="35.201637"
+       y="85.599182" />
+    <text
+       xml:space="preserve"
+       id="text837-6-0-7"
+       style="font-style:normal;font-weight:normal;font-size:7.92542px;line-height:1.25;font-family:sans-serif;white-space:pre;shape-inside:url(#rect839-3-7-2);fill:#000000;fill-opacity:1;stroke:none;"
+       transform="matrix(0.4451218,0,0,0.4451218,18.945075,78.628472)"><tspan
+         x="41.875"
+         y="27.338368"><tspan
+           style="font-size:7.92542px">Zone A</tspan></tspan></text>
+    <text
+       xml:space="preserve"
+       id="text837-6-0-3-9"
+       style="font-style:normal;font-weight:normal;font-size:7.92542px;line-height:1.25;font-family:sans-serif;white-space:pre;shape-inside:url(#rect839-3-7-9-6);fill:#000000;fill-opacity:1;stroke:none;"
+       transform="matrix(0.4451218,0,0,0.4451218,31.27376,78.662923)"><tspan
+         x="41.875"
+         y="27.338368"><tspan>- Section 1</tspan></tspan></text>
+    <text
+       xml:space="preserve"
+       id="text837-6-0-3-0"
+       style="font-style:normal;font-weight:normal;font-size:6.34034px;line-height:1.25;font-family:sans-serif;white-space:pre;shape-inside:url(#rect839-3-7-9-2);fill:#000000;fill-opacity:1;stroke:none;"
+       transform="matrix(0.4451218,0,0,0.4451218,80.810443,50.403339)"><tspan
+         x="41.875"
+         y="25.880854"><tspan
+           style="font-style:italic;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:6.34034px;font-family:sans-serif;-inkscape-font-specification:'sans-serif Italic'">Node A3Z</tspan></tspan></text>
+    <text
+       xml:space="preserve"
+       id="text837-6-0-3-0-3"
+       style="font-style:normal;font-weight:normal;font-size:6.34034px;line-height:1.25;font-family:sans-serif;white-space:pre;shape-inside:url(#rect839-3-7-9-2-2);fill:#000000;fill-opacity:1;stroke:none;"
+       transform="matrix(0.33461868,0,0,0.33461868,42.817515,91.584514)"><tspan
+         x="41.875"
+         y="25.880854"><tspan
+           style="font-style:italic;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:6.34034px;font-family:sans-serif;-inkscape-font-specification:'sans-serif Italic'">Node A3Z</tspan></tspan></text>
+    <circle
+       style="opacity:1;fill:#ffdd55;stroke:#1a1a1a;stroke-width:0.0988028;stroke-miterlimit:4;stroke-dasharray:none"
+       id="path1268"
+       cx="55.536911"
+       cy="97.799461"
+       r="0.51087773" />
   </g>
 </svg>
