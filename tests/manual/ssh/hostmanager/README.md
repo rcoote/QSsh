@@ -32,9 +32,3 @@ Under Linux use your repo manager zypper, apt-get to install libqt6mqtt.
 
 # Installation
 
-Todo list:
-*  Add 2D View
-*  Add 3D View
-*  Add MQTT Client (each host can supply an MQTT Data to a Broker)
-*  Add terminal to connect remotley to any ssh host
-
